@@ -1,0 +1,46 @@
+<div
+  class="app-container"
+  [class.app-is-mobile]="mobileQuery.matches"
+>
+  <mat-toolbar
+    color="primary"
+    class="app-toolbar"
+  >
+    <button
+      mat-icon-button
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="app-name">{{ name }}</h1>
+  </mat-toolbar>
+  <mat-sidenav-container
+    class="app-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      fixedTopGap="56"
+      [(opened)]="opened"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      #drawer
+    >
+      <mat-nav-list>
+        <a
+          mat-list-item
+          routerLink="{{ item.ref }}"
+          *ngFor="let item of sidebarItems"
+          (click)="mobileQuery.matches && drawer.close()"
+        >
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <span class="ml-3">{{ item.title }}</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
