@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
+import { MENU_ITEMS } from '../../mocks/menu-items.mock';
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -8,12 +10,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class SidenavComponent implements OnInit, OnDestroy {
   name = 'Link To';
+  menuItems = MENU_ITEMS;
+
   opened = true;
   mobileQuery: MediaQueryList;
-  sidebarItems = [
-    { title: 'Puzzle', ref: 'puzzle', icon: 'games' },
-    { title: 'Rank', ref: 'rank', icon: 'list' },
-  ];
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
