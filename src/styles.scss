@@ -1,10 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body {
-  height: 100%;
-}
+// The Best Parts of Bootstrap 4 You Are Missing in Angular Material
+// Ref: https://www.amadousall.com/the-good-parts-of-bootstrap-4-you-are-missing-in-your-angular-material-projects/
+@import "scss/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
+@import "scss/reset";
 
 body {
-  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
