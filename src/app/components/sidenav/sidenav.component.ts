@@ -9,11 +9,12 @@ import { MENU_ITEMS } from '../../mocks/menu-items.mock';
   styleUrls: ['./sidenav.component.scss'],
 })
 export class SidenavComponent implements OnInit, OnDestroy {
+
+  mobileQuery: MediaQueryList;
+
   name = 'Link To';
   menuItems = MENU_ITEMS;
-
   opened = true;
-  mobileQuery: MediaQueryList;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -34,4 +35,5 @@ export class SidenavComponent implements OnInit, OnDestroy {
     // tslint:disable-next-line: deprecation
     this.mobileQuery.removeListener(this.mobileQueryListener);
   }
+
 }
