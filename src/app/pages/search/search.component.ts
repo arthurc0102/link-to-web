@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap } from 'rxjs/operators';
+
+import { LinkService } from '../../services/link.service';
+import { Link } from '../../models/link.model';
 
 @Component({
   selector: 'app-search',
@@ -7,10 +11,12 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
+
   form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    private linkService: LinkService,
   ) { }
 
   ngOnInit() {
@@ -29,6 +35,18 @@ export class SearchComponent implements OnInit {
   }
 
   submit(): void {
+    if (this.form.invalid) {
+      return;
+    }
 
+    this.linkService.search(this.form.value.code)
+      .subscribe(
+        this.redirect,
+      );
   }
+
+  redirect(link: Link) {
+    window.location.href = link.url;
+  }
+
 }

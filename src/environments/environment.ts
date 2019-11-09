@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseURL: 'https://api.link.arthurc.me/v1',
 };
 
 /*
