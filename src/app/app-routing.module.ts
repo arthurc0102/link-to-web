@@ -7,19 +7,14 @@ import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'app',
     component: SidenavComponent,
     children: [
-      {
-        path: 'search',
-        component: SearchComponent,
-      },
-      {
-        path: '**',
-        component: NotFoundComponent,
-      },
+      { path: 'search', component: SearchComponent },
     ],
   },
+  { path: '', pathMatch: 'full', redirectTo: '/app/search' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
