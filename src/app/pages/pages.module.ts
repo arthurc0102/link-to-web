@@ -7,12 +7,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MaterialModule } from '../modules/material.module';
 import { SearchComponent } from './search/search.component';
 import { FieldErrorsPipe } from '../pipes/field-errors.pipe';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     SearchComponent,
     FieldErrorsPipe,
+    RedirectComponent,
   ],
   imports: [
     CommonModule,
