@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { tap } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 import { LinkService } from '../../services/link.service';
 import { Link } from '../../models/link.model';
@@ -17,6 +18,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private linkService: LinkService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  get f(): {[key: string]: AbstractControl} {
+  get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
 
@@ -39,14 +41,15 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    this.linkService.search(this.form.value.code)
-      .subscribe(
-        this.redirect,
-      );
+    this.linkService.search(this.form.value.code).subscribe(this.redirect, this.notFound);
   }
 
   redirect(link: Link) {
     window.location.href = link.url;
+  }
+
+  notFound(error: HttpErrorResponse) {
+    this.toastr.error(error.error.detail, 'Error');
   }
 
 }
