@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
   }
 
   redirect(link: Link) {
-    window.location.href = link.url;
+    window.open(link.url, '_target');
   }
 
   notFound(error: HttpErrorResponse) {
