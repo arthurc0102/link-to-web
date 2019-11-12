@@ -41,15 +41,14 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    this.linkService.search(this.form.value.code).subscribe(this.redirect, this.notFound);
-  }
-
-  redirect(link: Link) {
-    window.open(link.url, '_target');
-  }
-
-  notFound(error: HttpErrorResponse) {
-    this.toastr.error(error.error.detail, 'Error');
+    this.linkService.search(this.form.value.code).subscribe(
+      (link: Link) => {
+        window.open(link.url, '_target');
+      },
+      (error: HttpErrorResponse) => {
+        this.toastr.error(error.error.detail, 'Error');
+      },
+    );
   }
 
 }
