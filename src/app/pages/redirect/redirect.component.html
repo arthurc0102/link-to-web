@@ -1,6 +1,7 @@
-<div class="row mt-3">
+<div class="row mt-3" *ngIf="code$ | async as code">
   <div class="col">
-    <h1 class="text-center">Code "{{ code$ | async }}" not found</h1>
+    <h1 class="text-center">{{ code }}</h1>
     <mat-divider></mat-divider>
+    <p class="text-center mt-3" *ngIf="error">{{ error.error.detail }}</p>
   </div>
 </div>

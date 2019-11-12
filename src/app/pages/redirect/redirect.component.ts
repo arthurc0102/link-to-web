@@ -3,7 +3,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
 
 import { LinkService } from '../../services/link.service';
 import { Link } from '../../models/link.model';
@@ -16,9 +15,9 @@ import { Link } from '../../models/link.model';
 export class RedirectComponent implements OnInit {
 
   code$: Observable<string>;
+  error: HttpErrorResponse = null;
 
   constructor(
-    private toastr: ToastrService,
     private linkService: LinkService,
     private route: ActivatedRoute,
   ) { }
@@ -26,12 +25,15 @@ export class RedirectComponent implements OnInit {
   ngOnInit() {
     this.code$ = this.route.params.pipe(
       map((params: Params) => params.code),
-      tap((code: string) => this.linkService.search(code).subscribe(this.redirect, console.log)),
+      tap((code: string) => this.linkService.search(code).subscribe(
+        (link: Link) => {
+          window.location.href = link.url;
+        },
+        (error: HttpErrorResponse) => {
+          this.error = error;
+        },
+      )),
     );
-  }
-
-  redirect(link: Link) {
-    window.location.href = link.url;
   }
 
 }
