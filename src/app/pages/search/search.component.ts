@@ -41,7 +41,8 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-    this.linkService.search(this.form.value.code).subscribe(
+    const code = this.form.value.code.replace(`${window.location.origin}/`, '');
+    this.linkService.search(code).subscribe(
       (link: Link) => {
         window.open(link.url, '_target');
       },
