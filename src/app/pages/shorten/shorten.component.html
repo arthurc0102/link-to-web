@@ -1,0 +1,48 @@
+<div class="row mt-3">
+  <div class="col-12">
+    <h1>Shorten</h1>
+    <mat-divider></mat-divider>
+  </div>
+  <div class="col-12">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+    >
+      <mat-form-field class="mt-2">
+        <input
+          matInput
+          required
+          type="url"
+          placeholder="Url"
+          formControlName="url"
+        >
+        <mat-error *ngIf="showFieldHint('url')">
+          <span *ngFor="let e of f['url'] | fieldErrors">{{ e }}</span><br>
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        type="submit"
+        color="primary"
+        class="float-right"
+        [disabled]="form.invalid"
+        *ngIf="!isShorted()"
+      >
+        Create
+      </button>
+
+      <button
+        mat-flat-button
+        type="button"
+        color="accent"
+        class="float-right"
+        [disabled]="form.invalid"
+        *ngIf="isShorted()"
+        (click)="copy()"
+      >
+        Copy
+      </button>
+    </form>
+  </div>
+</div>
