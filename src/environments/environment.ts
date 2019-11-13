@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://api.link.arthurc.me/v1',
+  baseURL: 'http://127.0.0.1:8000/v1',
 };
 
 /*
