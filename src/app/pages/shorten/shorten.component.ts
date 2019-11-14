@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { LinkService } from '../../services/link.service';
 import { Link } from '../../models/link.model';
@@ -59,6 +60,11 @@ export class ShortenComponent implements OnInit {
       (link: Link) => {
         this.toastr.success('Link shorten');
         this.f.url.setValue(`${window.location.origin}/${link.code}`);
+      },
+      (error: HttpErrorResponse) => {
+        Object.keys(error.error).forEach((key: string) => {
+          this.f[key].setErrors({ errorMessage: error.error[key].join(', ') });
+        });
       },
     );
   }

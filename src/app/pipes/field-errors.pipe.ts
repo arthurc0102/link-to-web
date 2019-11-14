@@ -11,7 +11,7 @@ export class FieldErrorsPipe implements PipeTransform {
 
     Object.keys(value.errors).forEach(key => {
       let message: string;
-      const error = (value.errors[key]);
+      const error = value.errors[key];
 
       switch (key) {
         case 'required':
@@ -26,8 +26,11 @@ export class FieldErrorsPipe implements PipeTransform {
         case 'maxlength':
           message = `No longer than ${error.requiredLength}.`;
           break;
+        case 'errorMessage':
+          message = error;
+          break;
         default:
-          message = `This field error by '${key}'.`;
+          message = `This field's error case by '${key}'.`;
           break;
       }
 
