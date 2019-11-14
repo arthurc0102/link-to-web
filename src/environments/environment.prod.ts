@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: 'https://api.link.arthurc.me/v1',
+  baseURL: 'https://0102.tw/api/v1',
 };
