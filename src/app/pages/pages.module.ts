@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { ComponentsModule } from '../components/components.module';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -25,6 +26,7 @@ import { ShortenComponent } from './shorten/shorten.component';
     MaterialModule,
     ReactiveFormsModule,
     ClipboardModule,
+    NgxSpinnerModule,
   ],
 })
 export class PagesModule { }

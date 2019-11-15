@@ -5,3 +5,13 @@
     <p class="text-center mt-3" *ngIf="error">{{ error.error.detail }}</p>
   </div>
 </div>
+
+<ngx-spinner
+  bdColor="#333"
+  size="large"
+  color="#fff"
+  type="pacman"
+  [fullScreen]="true"
+>
+  <p style="color: white;">Loading</p>
+</ngx-spinner>
