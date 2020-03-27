@@ -112,6 +112,13 @@
         }
       ]
     },
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
     "variable-name": {
       "options": [
         "ban-keywords",
