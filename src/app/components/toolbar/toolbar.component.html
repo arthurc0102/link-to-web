@@ -7,7 +7,7 @@
         mat-button
         class="item"
         [routerLink]="item.link"
-        *ngFor="let item of leftMenuItems"
+        *ngFor="let item of getMenuItems('left')"
       >
         {{ item.title }}
       </a>
@@ -20,7 +20,7 @@
         mat-button
         class="item"
         [routerLink]="item.link"
-        *ngFor="let item of rightMenuItems"
+        *ngFor="let item of getMenuItems('right')"
       >
         {{ item.title }}
       </a>
@@ -46,7 +46,7 @@
       class="item"
       [routerLink]="item.link"
       (click)="closeMenu()"
-      *ngFor="let item of menuItems"
+      *ngFor="let item of getMenuItems()"
     >
       {{ item.title }}
     </a>

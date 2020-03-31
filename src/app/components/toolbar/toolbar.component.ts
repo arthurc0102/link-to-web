@@ -14,14 +14,15 @@ export class ToolbarComponent implements OnInit {
 
   isMenuOpen$: Observable<boolean>;
 
-  leftMenuItems: MenuItem[] = [
-    { title: 'Shorten', link: '/shorten' },
-    { title: 'Bookmark', link: '/bookmark' },
-  ];
-
-  rightMenuItems: MenuItem[] = [
-    { title: 'Auth', link: '/auth' },
-  ];
+  private menuItems: { left: MenuItem[], right: MenuItem[] } = {
+    left: [
+      { title: 'Shorten', link: '/shorten' },
+      { title: 'Bookmark', link: '/bookmark' },
+    ],
+    right: [
+      { title: 'Auth', link: '/auth' },
+    ],
+  };
 
   constructor(private toolbarService: ToolbarService) { }
 
@@ -37,8 +38,14 @@ export class ToolbarComponent implements OnInit {
     this.toolbarService.close();
   }
 
-  get menuItems(): MenuItem[] {
-    return this.leftMenuItems.concat(this.rightMenuItems);
+  getMenuItems(tag?: 'left' | 'right'): MenuItem[] {
+    if (!tag) {
+      return Object
+        .values(this.menuItems)
+        .reduce((previous, current) => previous.concat(current));
+    }
+
+    return this.menuItems[tag];
   }
 
 }
