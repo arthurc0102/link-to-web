@@ -1,6 +1,6 @@
-<mat-toolbar color="primary" (clickOutside)="close()">
+<mat-toolbar color="primary" (clickOutside)="closeMenu()">
   <mat-toolbar-row class="toolbar">
-    <a class="title" routerLink="/" (click)="close()">Link To</a>
+    <a class="title" routerLink="/" (click)="closeMenu()">Link To</a>
 
     <div fxHide.xs class="left">
       <a
@@ -31,21 +31,21 @@
       mat-icon-button
       class="menu-toggler"
       aria-label="menu toggler icon"
-      (click)="toggle()"
+      (click)="toggleMenu()"
     >
-      <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
+      <mat-icon>{{ (isMenuOpen$ | async) ? 'close' : 'menu' }}</mat-icon>
     </button>
   </mat-toolbar-row>
 
   <mat-toolbar-row
     fxHide.gt-xs
-    class="menu" *ngIf="isMenuOpen"
+    class="menu" *ngIf="(isMenuOpen$ | async)"
   >
     <a
       mat-button
       class="item"
       [routerLink]="item.link"
-      (click)="close()"
+      (click)="closeMenu()"
       *ngFor="let item of menuItems"
     >
       {{ item.title }}

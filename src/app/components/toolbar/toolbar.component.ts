@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs';
+
 import { MenuItem } from '../../models/menu-item.model';
+import { ToolbarService } from '../../services/ui/toolbar.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,7 +12,7 @@ import { MenuItem } from '../../models/menu-item.model';
 })
 export class ToolbarComponent implements OnInit {
 
-  isMenuOpen = false;
+  isMenuOpen$: Observable<boolean>;
 
   leftMenuItems: MenuItem[] = [
     { title: 'Shorten', link: '/shorten' },
@@ -20,24 +23,21 @@ export class ToolbarComponent implements OnInit {
     { title: 'Auth', link: '/auth' },
   ];
 
-  constructor() { }
+  constructor(private toolbarService: ToolbarService) { }
 
   ngOnInit(): void {
+    this.isMenuOpen$ = this.toolbarService.isMenuOpen();
   }
 
-  toggle(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+  toggleMenu(): void {
+    this.toolbarService.toggle();
   }
 
-  open(): void {
-    this.isMenuOpen = true;
+  closeMenu(): void {
+    this.toolbarService.close();
   }
 
-  close(): void {
-    this.isMenuOpen = false;
-  }
-
-  get menuItems() {
+  get menuItems(): MenuItem[] {
     return this.leftMenuItems.concat(this.rightMenuItems);
   }
 
