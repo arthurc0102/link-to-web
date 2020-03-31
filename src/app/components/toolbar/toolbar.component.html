@@ -1,0 +1,54 @@
+<mat-toolbar color="primary" (clickOutside)="close()">
+  <mat-toolbar-row class="toolbar">
+    <a class="title" routerLink="/" (click)="close()">Link To</a>
+
+    <div fxHide.xs class="left">
+      <a
+        mat-button
+        class="item"
+        [routerLink]="item.link"
+        *ngFor="let item of leftMenuItems"
+      >
+        {{ item.title }}
+      </a>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div fxHide.xs class="right">
+      <a
+        mat-button
+        class="item"
+        [routerLink]="item.link"
+        *ngFor="let item of rightMenuItems"
+      >
+        {{ item.title }}
+      </a>
+    </div>
+
+    <button
+      fxHide.gt-xs
+      mat-icon-button
+      class="menu-toggler"
+      aria-label="menu toggler icon"
+      (click)="toggle()"
+    >
+      <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row
+    fxHide.gt-xs
+    class="menu" *ngIf="isMenuOpen"
+  >
+    <a
+      mat-button
+      class="item"
+      [routerLink]="item.link"
+      (click)="close()"
+      *ngFor="let item of menuItems"
+    >
+      {{ item.title }}
+    </a>
+  </mat-toolbar-row>
+</mat-toolbar>
