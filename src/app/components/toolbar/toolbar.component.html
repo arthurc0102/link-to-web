@@ -29,8 +29,8 @@
     <button
       fxHide.gt-xs
       mat-icon-button
-      class="menu-toggler"
-      aria-label="menu toggler icon"
+      class="menu-toggle"
+      aria-label="menu icon"
       (click)="toggleMenu()"
     >
       <mat-icon>{{ (isMenuOpen$ | async) ? 'close' : 'menu' }}</mat-icon>
