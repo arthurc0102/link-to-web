@@ -33,3 +33,18 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;  // let 100% will not overflow
+}
+
+
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
