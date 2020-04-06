@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.validator {
+  display: flex;
+  align-items: center;
+
+  mat-icon {
+    margin-right: 5px;
+
+    &.success {
+      color: green;
+    }
+
+    &.error {
+      color: red;
+    }
+  }
+}
+
+.validator:not(:first-of-type) {
+  margin-top: 3px;
+}

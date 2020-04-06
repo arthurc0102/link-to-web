@@ -1,0 +1,14 @@
+<span
+  class="validator"
+  *ngFor="let code of errorCodes"
+>
+  <mat-icon [ngClass]="hasError(code) ? 'error' : 'success'">
+    {{ getIconName(code) }}
+  </mat-icon>
+
+  <ng-container [ngSwitch]="code">
+    <span *ngSwitchCase="'required'">This field is required.</span>
+    <span *ngSwitchCase="'email'">This field should be an email.</span>
+    <span *ngSwitchDefault>Error code: {{ code }}.</span>
+  </ng-container>
+</span>

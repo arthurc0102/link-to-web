@@ -1,0 +1,55 @@
+<div
+  class="container"
+  fxFlex.xs="100%"
+  fxFlex.sm="80%"
+  fxFlex.md="50%"
+  fxFlex.lg="40%"
+  fxFlex.xl="20%"
+>
+  <h1>Login</h1>
+  <mat-divider></mat-divider>
+  <form class="login" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="standard">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        required
+        type="email"
+        placeholder="Please enter your email"
+        formControlName="email"
+      >
+      <mat-hint>
+        <app-field-hints
+          [field]="form.controls['email']"
+          [errorCodes]="['required', 'email']"
+        ></app-field-hints>
+      </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        required
+        type="password"
+        placeholder="Please enter your password"
+        formControlName="password"
+      >
+      <mat-hint>
+        <app-field-hints
+          [field]="form.controls['password']"
+          [errorCodes]="['required']"
+        ></app-field-hints>
+      </mat-hint>
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      type="submit"
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Login
+    </button>
+  </form>
+</div>
