@@ -20,7 +20,8 @@ export class ToolbarComponent implements OnInit {
       { title: 'Bookmark', link: '/bookmark' },
     ],
     right: [
-      { title: 'Auth', link: '/auth' },
+      { title: 'Login', link: '/auth/login' },
+      { title: 'Register', link: '/auth/register' },
     ],
   };
 
