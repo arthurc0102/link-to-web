@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MenuItem } from '../../models/menu-item.model';
+import { AuthService } from '../../services/auth.service';
 import { ToolbarService } from '../../services/ui/toolbar.service';
 
 @Component({
@@ -16,16 +17,19 @@ export class ToolbarComponent implements OnInit {
 
   private menuItems: { left: MenuItem[], right: MenuItem[] } = {
     left: [
-      { title: 'Shorten', link: '/shorten' },
-      { title: 'Bookmark', link: '/bookmark' },
+      { title: 'Shorten', link: '/shorten', needAuthenticate: null },
+      { title: 'Bookmark', link: '/bookmark', needAuthenticate: true },
     ],
     right: [
-      { title: 'Login', link: '/auth/login' },
-      { title: 'Register', link: '/auth/register' },
+      { title: 'Login', link: '/auth/login', needAuthenticate: false },
+      { title: 'Logout', link: '/auth/logout', needAuthenticate: true },
     ],
   };
 
-  constructor(private toolbarService: ToolbarService) { }
+  constructor(
+    private auth: AuthService,
+    private toolbarService: ToolbarService,
+  ) { }
 
   ngOnInit(): void {
     this.isMenuOpen$ = this.toolbarService.isMenuOpen$;
@@ -40,11 +44,15 @@ export class ToolbarComponent implements OnInit {
   }
 
   getMenuItems(tag?: 'left' | 'right'): MenuItem[] {
+    let items: MenuItem[];
+
     if (!tag) {
-      return Object.values(this.menuItems).reduce((previous, current) => previous.concat(current));
+      items = Object.values(this.menuItems).reduce((previous, current) => previous.concat(current));
+    } else {
+      items = this.menuItems[tag];
     }
 
-    return this.menuItems[tag];
+    return items.filter(item => item.needAuthenticate === null || item.needAuthenticate === this.auth.isAuthenticated);
   }
 
 }
