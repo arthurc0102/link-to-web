@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-logout',
@@ -19,7 +20,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.cleanToken();
-    this.router.navigate(['auth', 'login']);
+    this.router.navigate([environment.logoutRedirectUrl]);
     this.snackbar.open('Logout success');
   }
 

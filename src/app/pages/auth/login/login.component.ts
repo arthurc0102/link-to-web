@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 import { AuthService } from '../../../services/auth.service';
 import { LoginService } from '../../../services/api/login.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         token => {
           this.auth.setToken(token);
-          this.router.navigate(['shorten']);
+          this.router.navigate([environment.loginRedirectUrl]);
         },
         res => {
           this.snackBar.open(res.error.detail);
