@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { MenuItem } from '../../models/menu-item.model';
-import { AuthService } from '../../services/auth.service';
-import { ToolbarService } from '../../services/ui/toolbar.service';
+import { MenuItem } from 'src/app/models/menu-item.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { ToolbarService } from 'src/app/services/ui/toolbar.service';
 
 @Component({
   selector: 'app-toolbar',

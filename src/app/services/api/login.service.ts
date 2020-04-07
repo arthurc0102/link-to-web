@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { HttpService } from '../http.service';
+import { LoginResponse } from 'src/app/models/login-response.model';
+import { Login } from 'src/app/models/login.model';
 
-import { Login } from '../../models/login.model';
-import { LoginResponse } from '../../models/login-response.model';
+import { HttpService } from '../http.service';
 
 @Injectable({
   providedIn: 'root',

@@ -8,9 +8,9 @@ import { takeUntil, finalize } from 'rxjs/operators';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 
-import { AuthService } from '../../../services/auth.service';
-import { LoginService } from '../../../services/api/login.service';
-import { environment } from '../../../../environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
+import { LoginService } from 'src/app/services/api/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
