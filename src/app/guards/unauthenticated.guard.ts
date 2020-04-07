@@ -17,8 +17,6 @@ export class UnauthenticatedGuard implements CanActivate {
   ) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log(next);
-    console.log(state);
     const isAuthenticated = this.auth.isAuthenticated;
 
     if (isAuthenticated) {
