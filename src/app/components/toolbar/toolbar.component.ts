@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
 
 import { MenuItem } from '../../models/menu-item.model';
 import { ToolbarService } from '../../services/ui/toolbar.service';
