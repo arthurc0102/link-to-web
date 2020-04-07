@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -20,6 +21,7 @@ import { MaterialModule } from './modules/material.module';
     BrowserAnimationsModule,
     ComponentsModule,
     MaterialModule,
+    HttpClientModule,
     NgxSpinnerModule,
   ],
   providers: [],
