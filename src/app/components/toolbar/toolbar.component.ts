@@ -29,7 +29,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private toolbarService: ToolbarService) { }
 
   ngOnInit(): void {
-    this.isMenuOpen$ = this.toolbarService.isMenuOpen$.pipe(share());
+    this.isMenuOpen$ = this.toolbarService.isMenuOpen$;
   }
 
   toggleMenu(): void {

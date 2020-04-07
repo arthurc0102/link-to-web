@@ -8,24 +8,28 @@ import { share } from 'rxjs/operators';
 })
 export class ToolbarService {
 
-  isMenuOpen$ = new BehaviorSubject<boolean>(false);
+  private isMenuOpenSubject$ = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
   toggle(): void {
-    this.isMenuOpen$.next(!this.isMenuOpen);
+    this.isMenuOpenSubject$.next(!this.isMenuOpen);
   }
 
   open(): void {
-    this.isMenuOpen$.next(true);
+    this.isMenuOpenSubject$.next(true);
   }
 
   close(): void {
-    this.isMenuOpen$.next(false);
+    this.isMenuOpenSubject$.next(false);
   }
 
   get isMenuOpen(): boolean {
-    return this.isMenuOpen$.getValue();
+    return this.isMenuOpenSubject$.getValue();
+  }
+
+  get isMenuOpen$(): Observable<boolean> {
+    return this.isMenuOpenSubject$.pipe(share());
   }
 
 }
