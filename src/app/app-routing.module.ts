@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
   },
   {
+    path: 'shorten',
+    loadChildren: () => import('./pages/shorten/shorten.module').then(m => m.ShortenModule),
+  },
+  {
     path: '',
     redirectTo: 'shorten',
     pathMatch: 'full',
