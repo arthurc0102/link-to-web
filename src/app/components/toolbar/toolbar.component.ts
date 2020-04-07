@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { share } from 'rxjs/operators';
 
 import { MenuItem } from '../../models/menu-item.model';
 import { ToolbarService } from '../../services/ui/toolbar.service';
@@ -28,7 +29,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private toolbarService: ToolbarService) { }
 
   ngOnInit(): void {
-    this.isMenuOpen$ = this.toolbarService.isMenuOpen();
+    this.isMenuOpen$ = this.toolbarService.isMenuOpen$.pipe(share());
   }
 
   toggleMenu(): void {
@@ -41,9 +42,7 @@ export class ToolbarComponent implements OnInit {
 
   getMenuItems(tag?: 'left' | 'right'): MenuItem[] {
     if (!tag) {
-      return Object
-        .values(this.menuItems)
-        .reduce((previous, current) => previous.concat(current));
+      return Object.values(this.menuItems).reduce((previous, current) => previous.concat(current));
     }
 
     return this.menuItems[tag];

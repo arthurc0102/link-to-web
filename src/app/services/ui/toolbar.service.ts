@@ -8,16 +8,12 @@ import { share } from 'rxjs/operators';
 })
 export class ToolbarService {
 
-  private isMenuOpen$ = new BehaviorSubject<boolean>(false);
+  isMenuOpen$ = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
-  isMenuOpen(): Observable<boolean> {
-    return this.isMenuOpen$.pipe(share());
-  }
-
   toggle(): void {
-    this.isMenuOpen$.next(!this.isMenuOpen$.getValue());
+    this.isMenuOpen$.next(!this.isMenuOpen);
   }
 
   open(): void {
@@ -26,6 +22,10 @@ export class ToolbarService {
 
   close(): void {
     this.isMenuOpen$.next(false);
+  }
+
+  get isMenuOpen(): boolean {
+    return this.isMenuOpen$.getValue();
   }
 
 }
