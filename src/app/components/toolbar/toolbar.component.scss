@@ -3,6 +3,10 @@
     margin-right: 18px;
     text-decoration: none;
     color: white;
+
+    &, &:active, &:focus {
+      outline: none;
+    }
   }
 
   .spacer {
