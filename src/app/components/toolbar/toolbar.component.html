@@ -53,7 +53,19 @@
       class="item"
       [routerLink]="item.link"
       (click)="closeMenu()"
-      *ngFor="let item of getMenuItems()"
+      *ngFor="let item of getMenuItems('left')"
+    >
+      {{ item.title }}
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <a
+      mat-button
+      class="item"
+      [routerLink]="item.link"
+      (click)="closeMenu()"
+      *ngFor="let item of getMenuItems('right')"
     >
       {{ item.title }}
     </a>
