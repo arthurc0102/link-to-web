@@ -1,6 +1,12 @@
 <mat-toolbar color="primary" (clickOutside)="closeMenu()">
   <mat-toolbar-row class="toolbar">
-    <a class="title" routerLink="/" (click)="closeMenu()">Link To</a>
+    <a
+      class="title"
+      routerLink="/"
+      (click)="closeMenu()"
+    >
+      Link To
+    </a>
 
     <div fxHide.xs class="left">
       <a
@@ -39,7 +45,8 @@
 
   <mat-toolbar-row
     fxHide.gt-xs
-    class="menu" *ngIf="(isMenuOpen$ | async)"
+    class="menu"
+    *ngIf="(isMenuOpen$ | async)"
   >
     <a
       mat-button
