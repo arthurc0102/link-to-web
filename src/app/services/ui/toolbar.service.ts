@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +29,7 @@ export class ToolbarService {
   }
 
   get isMenuOpen$(): Observable<boolean> {
-    return this.isMenuOpenSubject$.pipe(share());
+    return this.isMenuOpenSubject$.pipe(shareReplay(1));
   }
 
 }

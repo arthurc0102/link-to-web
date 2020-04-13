@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject, Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { shareReplay } from 'rxjs/operators';
 
 import { LocalStorageKey } from '../enums/local-storage-key.enum';
 import { LoginResponse } from '../models/login-response.model';
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   get isAuthenticated$(): Observable<boolean> {
-    return this.isAuthenticatedSubject$.pipe(share());
+    return this.isAuthenticatedSubject$.pipe(shareReplay(1));
   }
 
   get accessToken(): string | null {
