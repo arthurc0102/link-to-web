@@ -1,17 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { ValidationErrors } from '@angular/forms';
 
 @Pipe({
   name: 'fieldErrors',
 })
 export class FieldErrorsPipe implements PipeTransform {
 
-  transform(value: AbstractControl): string[] {
-    const errors: string[] = [];
+  transform(errors: ValidationErrors): string[] {
+    const errorMessages: string[] = [];
 
-    Object.keys(value.errors).forEach(key => {
+    Object.keys(errors).forEach(key => {
       let message: string;
-      const error = value.errors[key];
+      const error = errors[key];
 
       switch (key) {
         case 'required':
@@ -26,6 +26,9 @@ export class FieldErrorsPipe implements PipeTransform {
         case 'maxlength':
           message = `No longer than ${error.requiredLength}.`;
           break;
+        case 'email':
+          message = 'This is not a email';
+          break;
         case 'errorMessage':
           message = error;
           break;
@@ -34,10 +37,10 @@ export class FieldErrorsPipe implements PipeTransform {
           break;
       }
 
-      errors.push(message);
+      errorMessages.push(message);
     });
 
-    return errors;
+    return errorMessages;
   }
 
 }

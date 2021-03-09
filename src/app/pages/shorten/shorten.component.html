@@ -16,8 +16,8 @@
           placeholder="Url"
           formControlName="url"
         >
-        <mat-error *ngIf="showFieldHint('url')">
-          <span *ngFor="let e of f['url'] | fieldErrors">{{ e }}</span><br>
+        <mat-error *ngIf="isFieldInvalid('url')">
+          <span *ngFor="let e of form.get('url').errors | fieldErrors">{{ e }}</span><br>
         </mat-error>
       </mat-form-field>
 

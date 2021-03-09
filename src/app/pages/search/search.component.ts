@@ -27,12 +27,8 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
-  }
-
-  showFieldHint(name: string) {
-    const field = this.f[name];
+  isFieldInvalid(name: string): boolean {
+    const field = this.form.get(name);
     return field.invalid && (field.dirty || field.touched);
   }
 

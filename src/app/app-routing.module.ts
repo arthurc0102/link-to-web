@@ -6,6 +6,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SearchComponent } from './pages/search/search.component';
 import { RedirectComponent } from './pages/redirect/redirect.component';
 import { ShortenComponent } from './pages/shorten/shorten.component';
+import { AuthComponent } from './pages/auth/auth.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       { path: 'search', component: SearchComponent },
       { path: 'shorten', component: ShortenComponent },
+      { path: 'auth', component: AuthComponent },
     ],
   },
   { path: ':code', component: RedirectComponent },

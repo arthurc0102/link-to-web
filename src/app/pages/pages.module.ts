@@ -8,17 +8,18 @@ import { ComponentsModule } from '../components/components.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MaterialModule } from '../modules/material.module';
 import { SearchComponent } from './search/search.component';
-import { FieldErrorsPipe } from '../pipes/field-errors.pipe';
 import { RedirectComponent } from './redirect/redirect.component';
 import { ShortenComponent } from './shorten/shorten.component';
+import { AuthComponent } from './auth/auth.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     SearchComponent,
-    FieldErrorsPipe,
     RedirectComponent,
     ShortenComponent,
+    AuthComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { ShortenComponent } from './shorten/shorten.component';
     ReactiveFormsModule,
     ClipboardModule,
     NgxSpinnerModule,
+    PipesModule,
   ],
 })
 export class PagesModule { }

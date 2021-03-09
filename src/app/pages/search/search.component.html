@@ -16,8 +16,8 @@
           placeholder="Code"
           formControlName="code"
         >
-        <mat-error *ngIf="showFieldHint('code')">
-          <span *ngFor="let e of f['code'] | fieldErrors">{{ e }}</span><br>
+        <mat-error *ngIf="isFieldInvalid('code')">
+          <span *ngFor="let e of form.get('code').errors | fieldErrors">{{ e }}</span><br>
         </mat-error>
       </mat-form-field>
 
