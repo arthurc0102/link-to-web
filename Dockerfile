@@ -1,7 +1,7 @@
 # Build part
-FROM node:12-alpine as build
+FROM node:12-alpine as builder
 
-WORKDIR /src
+WORKDIR /var/app
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
@@ -17,4 +17,5 @@ FROM nginx:alpine
 
 WORKDIR /var/www/web
 
-COPY --from=build /src/dist .
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /var/app/dist .
