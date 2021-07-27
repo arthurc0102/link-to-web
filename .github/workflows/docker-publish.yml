@@ -46,14 +46,11 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: false
+          push: true
           target: builder
           tags: build
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:build
-          cache-to: type=inline
-
-      - run: |
-          docker image ls
+          # cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:build
+          # cache-to: type=inline
 
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@v2
