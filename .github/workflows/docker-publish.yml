@@ -42,25 +42,25 @@ jobs:
             type=ref,event=branch
             type=sha
 
-      - name: Build and push Builder Docker image
+      - name: Build and push builder Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
+          target: builder
           tags: build
-          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:build
           cache-to: type=inline
 
       - run: |
           docker image ls
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.branch.outputs.branch }}
-          cache-to: type=inline
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     labels: ${{ steps.meta.outputs.labels }}
+      #     cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.branch.outputs.branch }}
+      #     cache-to: type=inline
